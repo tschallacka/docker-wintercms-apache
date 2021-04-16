@@ -1,6 +1,13 @@
 version: '2'
 services:
   apache:
+    tty: true
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://10.10.80.231:514"
+        syslog-format: "rfc3164"
+        tag: "node-red"
     build:
       context: .
       dockerfile: build/apache/php-7.4/Dockerfile
